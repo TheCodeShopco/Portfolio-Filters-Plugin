@@ -1,0 +1,47 @@
+#gridThumbs a {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+#gridThumbs a.visible {
+  opacity: 1 !important;
+}
+
+#gridThumbs a.hidden {
+    display: none;
+}
+
+.filters-default {
+  max-width: var(--sqs-site-max-width);
+  margin: 0 auto;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters-default-active {
+  padding-top: 5rem !important;
+}
+
+@media (max-width:768px) {
+  .filters-default-active {
+    padding-top: 3rem !important;
+  }
+}
+
+#portfolio-filters a {
+  transition: all 250ms ease;
+  opacity: 0.5;
+}
+
+#portfolio-filters a.active {
+  opacity: 1 !important;
+}
+
+#portfolio-filters a:hover {
+  opacity: 1 !important;
+}
