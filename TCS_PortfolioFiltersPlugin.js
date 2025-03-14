@@ -41,7 +41,7 @@ function initialisePortfolioFilters() {
                 // Creating the categories select bar and adding its classes/event listener
                 let selectBar = document.createElement('select');
                 selectBar.id = 'portfolio-section-select-bar';
-                selectBar.addEventListener('change', filterListSection);
+                selectBar.addEventListener('change', filterPortfolioSection);
                 // Creating the default option for the select bar
                 let defaultOption = document.createElement('option');
                 defaultOption.value = 'all';
