@@ -74,6 +74,19 @@ function initialisePortfolioFilters() {
                 filterWrapper.classList.add('inset');
             }
 
+            if (document.body.classList.contains('tweak-portfolio-grid-basic-height-medium')) {
+                filterWrapper.style.paddingTop = "6.6vw";
+            } else if (document.body.classList.contains('tweak-portfolio-grid-basic-height-small')) {
+                filterWrapper.style.paddingTop = "3.3vw";
+            } else if (document.body.classList.contains('tweak-portfolio-grid-basic-height-large')) {
+                filterWrapper.style.paddingTop = "10vw";
+            } else if (document.body.classList.contains('tweak-portfolio-grid-basic-height-custom')) {
+                let paddingFinder = document.createElement('div');
+                paddingFinder.classList.add('.tweak-portfolio-grid-basic-height-custom');
+                let topPadding = window.getComputedStyle(paddingFinder).getPropertyValue('padding-top');
+                filterWrapper.style.paddingTop = topPadding;
+            }
+
             // Aligning the components depending on user selection
             let alignment = targetBlock.getAttribute('data-horizontal-alignment');
             switch (alignment) {
