@@ -1,47 +1,126 @@
-#gridThumbs a {
+section:has(#portfolio-section-filter-wrapper) #gridThumbs a {
     opacity: 0;
     transition: opacity 0.25s ease;
 }
 
-#gridThumbs a.visible {
+section:has(#portfolio-section-filter-wrapper) #gridThumbs a.visible {
   opacity: 1 !important;
 }
 
-#gridThumbs a.hidden {
+section:has(#portfolio-section-filter-wrapper) #gridThumbs a.hidden {
     display: none;
 }
 
-.filters-default {
-  max-width: var(--sqs-site-max-width);
-  margin: 0 auto;
-  justify-content: center;
-  gap: 2rem;
-}
-
-#portfolio-filters {
+#portfolio-section-filter-wrapper {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin-left: var(--sqs-site-gutter);
+  margin-right: var(--sqs-site-gutter);
 }
 
-.filters-default-active {
-  padding-top: 5rem !important;
-}
-
-@media (max-width:768px) {
-  .filters-default-active {
-    padding-top: 3rem !important;
+@media (max-width: 768px) {
+  #portfolio-section-filter-wrapper {
+    flex-direction: column;
   }
 }
 
-#portfolio-filters a {
-  transition: all 250ms ease;
-  opacity: 0.5;
+#portfolio-section-filter-wrapper.inset {
+  max-width: var(--sqs-site-max-width);
+  width: 100%;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: var(--sqs-site-gutter);
+  padding-right: var(--sqs-site-gutter);
 }
 
-#portfolio-filters a.active {
-  opacity: 1 !important;
+#portfolio-section-filters-search-bar-wrapper, #portfolio-section-filters-categories-wrapper {
+  position: relative;
+  flex-basis: 33%
 }
 
-#portfolio-filters a:hover {
+#portfolio-section-filters-search-bar-wrapper {
+  display: grid;
+}
+
+#portfolio-section-search-bar {
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--dynamic-input-text-color) !important;
+  font-weight: var(--form-block-input-text-font-font-weight) !important;
+  font-family: var(--form-block-input-text-font-font-family) !important;
+  font-size: calc(var(--form-block-input-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-input-text-font-line-height) !important;
+  letter-spacing: var(--form-block-input-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-input-text-font-text-transform) !important;
+  font-style: var(--form-block-input-text-font-font-style) !important;
+}
+
+#portfolio-section-search-bar::placeholder {
   opacity: 1 !important;
+  color: hsla(var(--dynamic-input-text-color-hsl, var(--fallback-black-hsl)), calc(var(--dynamic-input-text-color-a, 1) * 0.55));
+  font-weight: var(--form-block-placeholder-text-font-font-weight) !important;
+  font-family: var(--form-block-placeholder-text-font-font-family) !important;
+  font-size: calc(var(--form-block-placeholder-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-placeholder-text-font-line-height) !important;
+  letter-spacing: var(--form-block-placeholder-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-placeholder-text-font-text-transform) !important;
+  font-style: var(--form-block-placeholder-text-font-font-style) !important;
+}
+
+#portfolio-section-filters-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.select-dropdown-icon {
+  cursor: pointer;
+  pointer-events: none;
+  width: 18px;
+  height: 12px;
+  position: absolute;
+  right: calc(var(--form-field-border-thickness) + var(--form-field-padding-horizontal));
+  color: var(--dynamic-input-text-color);
+  z-index: 1;
+}
+
+.select-dropdown-icon svg {
+  display: block;
+}
+
+#portfolio-section-select-bar {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--dynamic-input-text-color) !important;
+  font-weight: var(--form-block-select-dropdown-text-font-font-weight) !important;
+  font-family: var(--form-block-select-dropdown-text-font-font-family) !important;
+  font-size: calc(var(--form-block-select-dropdown-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-select-dropdown-text-font-line-height) !important;
+  letter-spacing: var(--form-block-select-dropdown-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-select-dropdown-text-font-text-transform) !important;
+  font-style: var(--form-block-select-dropdown-text-font-font-style) !important;
+}
+
+#portfolio-section-select-bar::placeholder {
+  opacity: 1 !important;
+  color: hsla(var(--dynamic-input-text-color-hsl, var(--fallback-black-hsl)), calc(var(--dynamic-input-text-color-a, 1) * 0.55)) !important;
+  font-weight: var(--form-block-placeholder-text-font-font-weight) !important;
+  font-family: var(--form-block-placeholder-text-font-font-family) !important;
+  font-size: calc(var(--form-block-placeholder-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-placeholder-text-font-line-height) !important;
+  letter-spacing: var(--form-block-placeholder-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-placeholder-text-font-text-transform) !important;
+  font-style: var(--form-block-placeholder-text-font-font-style) !important;
+}
+
+#portfolio-section-select-bar option {
+  background: hsla(var(--dynamic-fill-color-hsl, var(--fallback-white-hsl)), calc(var(--dynamic-fill-color-a, 1) * var(--solid-alpha-modifier)));
+}
+
+#portfolio-section-select-bar option:hover {
+  background: var(--dynamic-fill-color-hsl);
 }
