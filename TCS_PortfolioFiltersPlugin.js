@@ -108,6 +108,7 @@ function initialisePortfolioFilters() {
             if (href) {
                 href = href.substring(1).split('/').slice(1).join('/');
                 let category = href.split('/')[0];
+                category = category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
                 item.setAttribute('data-category', category);
                 categories.add(category);
             }
