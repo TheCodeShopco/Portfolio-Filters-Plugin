@@ -1,3 +1,7 @@
+section:has(#portfolio-section-filter-wrapper) #gridThumbs {
+  padding-top: 0;
+}
+
 section:has(#portfolio-section-filter-wrapper) #gridThumbs a {
     opacity: 0;
     transition: opacity 0.25s ease;

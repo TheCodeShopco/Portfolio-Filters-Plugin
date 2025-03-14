@@ -81,8 +81,11 @@ function initialisePortfolioFilters() {
             } else if (document.body.classList.contains('tweak-portfolio-grid-basic-height-large')) {
                 filterWrapper.style.paddingTop = "10vw";
             } else if (document.body.classList.contains('tweak-portfolio-grid-basic-height-custom')) {
+                let paddingFinderOuter = document.createElement('div');
+                paddingFinderOuter.classList.add('tweak-portfolio-grid-basic-height-custom');
                 let paddingFinder = document.createElement('div');
-                paddingFinder.classList.add('.tweak-portfolio-grid-basic-height-custom');
+                paddingFinder.classList.add('portfolio-grid-basic');
+                paddingFinderOuter.appendChild(paddingFinder);
                 let topPadding = window.getComputedStyle(paddingFinder).getPropertyValue('padding-top');
                 filterWrapper.style.paddingTop = topPadding;
             }
