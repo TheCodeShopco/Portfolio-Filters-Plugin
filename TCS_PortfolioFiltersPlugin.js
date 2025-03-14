@@ -86,8 +86,10 @@ function initialisePortfolioFilters() {
                 let paddingFinder = document.createElement('div');
                 paddingFinder.classList.add('portfolio-grid-basic');
                 paddingFinderOuter.appendChild(paddingFinder);
+                document.body.appendChild(paddingFinderOuter);
                 let topPadding = window.getComputedStyle(paddingFinder).getPropertyValue('padding-top');
                 filterWrapper.style.paddingTop = topPadding;
+                paddingFinderOuter.remove();
             }
 
             // Aligning the components depending on user selection
