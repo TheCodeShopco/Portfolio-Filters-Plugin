@@ -20,7 +20,7 @@ function initialisePortfolioFilters() {
                 searchBar.type = 'text';
                 searchBar.placeholder = 'Search items...';
                 searchBar.id = 'portfolio-section-search-bar';
-                searchBar.addEventListener('input', filterPortfolioSection);
+                searchBar.addEventListener('input', updatePortfolioSection);
                 // Creating the search bar wrapper and adding its classes and id
                 let searchBarWrapper = document.createElement('div');
                 searchBarWrapper.id = "portfolio-section-filters-search-bar-wrapper";
@@ -41,7 +41,7 @@ function initialisePortfolioFilters() {
                 // Creating the categories select bar and adding its classes/event listener
                 let selectBar = document.createElement('select');
                 selectBar.id = 'portfolio-section-select-bar';
-                selectBar.addEventListener('change', filterPortfolioSection);
+                selectBar.addEventListener('change', updatePortfolioSection);
                 // Creating the default option for the select bar
                 let defaultOption = document.createElement('option');
                 defaultOption.value = 'all';
@@ -71,7 +71,7 @@ function initialisePortfolioFilters() {
                 // Creating the sorting select bar and adding its classes/event listener
                 let selectBar = document.createElement('select');
                 selectBar.id = 'portfolio-section-sorting-bar';
-                selectBar.addEventListener('change', filterPortfolioSection);
+                selectBar.addEventListener('change', updatePortfolioSection);
                 // Creating the default option for the select bar
                 let defaultOption = document.createElement('option');
                 defaultOption.value = 'none';
@@ -191,45 +191,79 @@ function initialisePortfolioFilters() {
         });
     }
 
-    function filterPortfolioSection() {
+    function updatePortfolioSection() {
         let portfolioSection = findPortfolioSection();
+        if (!portfolioSection) return;
         let searchBar = document.querySelector('#portfolio-section-search-bar');
         let selectBar = document.querySelector('#portfolio-section-select-bar');
+        let sortingBar = document.querySelector('#portfolio-section-sorting-bar');
 
         // Finding the values of the search and category bars
         let searchQuery = searchBar ? searchBar.value.toLowerCase() : '';
         let categoryQuery = selectBar ? selectBar.value : 'all';
+        let sortOption = sortingBar ? sortingBar.value : 'none';
 
         let portfolioItems = portfolioSection.querySelectorAll('.grid-item');
 
         // Iterating over the list items and hiding them if they dont match the search criteria
-        portfolioItems.forEach(item => {
-            let itemName = item.querySelector('.portfolio-title').innerText.toLowerCase();
-            let itemCategory = item.getAttribute('data-category');
+        const sortItems = () => {
+            return new Promise(resolve => {
+                portfolioItems.sort((a,b) => {
+                   let nameA = a.querySelector('.portfolio-title').innerText.toLowerCase();
+                   let nameB = b.querySelector('.portfolio-title').innerText.toLowerCase();
 
-            // Check if the search query matches the name, description, or any category
-            const matchesSearch = searchBar ? (
-            itemName.includes(searchQuery) ||
-            itemCategory.toLowerCase().includes(searchQuery)
-            ) : true;
+                   if (sortOption === 'a-z') {
+                        return nameA.localeCompare(nameB);
+                    } else if (sortOption === 'z-a') {
+                        return nameB.localeCompare(nameA);
+                    } else {
+                        return 0;
+                    }
+                });
 
-            // Check if the item matches the selected category
-            const matchesCategory = selectBar ? (categoryQuery === 'all' || itemCategory === categoryQuery) : true;
-
-            item.classList.remove('visible');
-            setTimeout(() => {
-                item.classList.add('hidden');
-            }, 250);
-            
-            setTimeout(() => {
-                if (matchesSearch && matchesCategory) {
-                    item.classList.remove('hidden');
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 10);
+                let portfolioItemsContainer = portfolioSection.querySelector('#gridThumbs');
+                if (portfolioItemsContainer) {
+                    portfolioItemsContainer.forEach(item => {
+                        item.classList.remove('visible');
+                        setTimeout(() => {
+                            item.classList.add('hidden');
+                        }, 250);
+                        setTimeout(() => {
+                            portfolioItemsContainer.appendChild(item);
+                        }, 250);
+                    });
                 }
-            }, 250);
-        });
+
+                resolve();
+            });
+        };
+
+        const filterItems = () => {
+            portfolioItems.forEach(item => {
+                let itemName = item.querySelector('.portfolio-title').innerText.toLowerCase();
+                let itemCategory = item.getAttribute('data-category');
+    
+                // Check if the search query matches the name, description, or any category
+                const matchesSearch = searchBar ? (
+                itemName.includes(searchQuery) ||
+                itemCategory.toLowerCase().includes(searchQuery)
+                ) : true;
+    
+                // Check if the item matches the selected category
+                const matchesCategory = selectBar ? (categoryQuery === 'all' || itemCategory === categoryQuery) : true;
+    
+                setTimeout(() => {
+                    if (matchesSearch && matchesCategory) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, 10);
+                    }
+                }, 250);
+            });
+        }
+        
+        sortItems().then(filterItems);
     }
 
     let portfolioSection = findPortfolioSection();
