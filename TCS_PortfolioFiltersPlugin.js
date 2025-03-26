@@ -152,6 +152,7 @@ function initialisePortfolioFilters() {
 
     function findCategories(portfolioSection) {
         let grid = portfolioSection.querySelector('#gridThumbs');
+        let targetBlock = document.querySelector('#filtered-portfolio-section');
         if (grid === null) {
             return;
         }
@@ -166,10 +167,12 @@ function initialisePortfolioFilters() {
                 let category = href.split('/')[0];
                 category = category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
                 item.setAttribute('data-category', category);
-                let categoryText = document.createElement('p');
-                categoryText.classList.add('portfolio-category');
-                categoryText.innerText = category;
-                item.querySelector('.portfolio-text').insertBefore(categoryText, item.querySelector('.portfolio-text').firstChild);
+                if (targetBlock.getAttribute('data-display-categories') === 'true') {
+                    let categoryText = document.createElement('p');
+                    categoryText.classList.add('portfolio-category');
+                    categoryText.innerText = category;
+                    item.querySelector('.portfolio-text').insertBefore(categoryText, item.querySelector('.portfolio-text').firstChild);
+                }
                 categories.add(category);
             }
         }
