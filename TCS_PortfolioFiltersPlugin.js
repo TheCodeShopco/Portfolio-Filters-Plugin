@@ -71,7 +71,7 @@ function initialisePortfolioFilters() {
                 // Creating the sorting select bar and adding its classes/event listener
                 let selectBar = document.createElement('select');
                 selectBar.id = 'portfolio-section-sorting-bar';
-                selectBar.addEventListener('change', updateListSection);
+                selectBar.addEventListener('change', filterPortfolioSection);
                 // Creating the default option for the select bar
                 let defaultOption = document.createElement('option');
                 defaultOption.value = 'none';
