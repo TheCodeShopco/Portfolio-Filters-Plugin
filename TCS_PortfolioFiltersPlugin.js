@@ -223,7 +223,7 @@ function initialisePortfolioFilters() {
 
                 let portfolioItemsContainer = portfolioSection.querySelector('#gridThumbs');
                 if (portfolioItemsContainer) {
-                    portfolioItemsContainer.forEach(item => {
+                    portfolioItems.forEach(item => {
                         item.classList.remove('visible');
                         setTimeout(() => {
                             item.classList.add('hidden');
