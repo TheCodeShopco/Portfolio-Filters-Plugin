@@ -74,7 +74,7 @@ section:has(#portfolio-section-filter-wrapper) #gridThumbs a.hidden {
   font-style: var(--form-block-placeholder-text-font-font-style) !important;
 }
 
-#portfolio-section-filters-categories-wrapper {
+#portfolio-section-filters-categories-wrapper, #portfolio-section-filters-sorting-wrapper {
   display: flex;
   align-items: center;
 }
