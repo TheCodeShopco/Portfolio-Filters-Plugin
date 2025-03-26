@@ -128,3 +128,39 @@ section:has(#portfolio-section-filter-wrapper) #gridThumbs a.hidden {
 #portfolio-section-select-bar option:hover {
   background: var(--dynamic-fill-color-hsl);
 }
+
+#portfolio-section-sorting-bar {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--dynamic-input-text-color) !important;
+  font-weight: var(--form-block-select-dropdown-text-font-font-weight) !important;
+  font-family: var(--form-block-select-dropdown-text-font-font-family) !important;
+  font-size: calc(var(--form-block-select-dropdown-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-select-dropdown-text-font-line-height) !important;
+  letter-spacing: var(--form-block-select-dropdown-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-select-dropdown-text-font-text-transform) !important;
+  font-style: var(--form-block-select-dropdown-text-font-font-style) !important;
+}
+
+#portfolio-section-sorting-bar::placeholder {
+  opacity: 1 !important;
+  color: hsla(var(--dynamic-input-text-color-hsl, var(--fallback-black-hsl)), calc(var(--dynamic-input-text-color-a, 1) * 0.55)) !important;
+  font-weight: var(--form-block-placeholder-text-font-font-weight) !important;
+  font-family: var(--form-block-placeholder-text-font-font-family) !important;
+  font-size: calc(var(--form-block-placeholder-text-font-font-size-value)* 1rem) !important;
+  line-height: var(--form-block-placeholder-text-font-line-height) !important;
+  letter-spacing: var(--form-block-placeholder-text-font-letter-spacing) !important;
+  text-transform: var(--form-block-placeholder-text-font-text-transform) !important;
+  font-style: var(--form-block-placeholder-text-font-font-style) !important;
+}
+
+#portfolio-section-sorting-bar option {
+  background: hsla(var(--dynamic-fill-color-hsl, var(--fallback-white-hsl)), calc(var(--dynamic-fill-color-a, 1) * var(--solid-alpha-modifier)));
+}
+
+#portfolio-section-sorting-bar option:hover {
+  background: var(--dynamic-fill-color-hsl);
+}

@@ -67,6 +67,44 @@ function initialisePortfolioFilters() {
                 // Adding the category select wrapper to the filter wrapper
                 filterWrapper.appendChild(categoriesWrapper);
             }
+            if (targetBlock.getAttribute('data-sorting-enabled') === 'true') {
+                // Creating the sorting select bar and adding its classes/event listener
+                let selectBar = document.createElement('select');
+                selectBar.id = 'portfolio-section-sorting-bar';
+                selectBar.addEventListener('change', updateListSection);
+                // Creating the default option for the select bar
+                let defaultOption = document.createElement('option');
+                defaultOption.value = 'none';
+                defaultOption.innerText = 'Sort by...';
+                selectBar.appendChild(defaultOption);
+                let ascendingOption = document.createElement('option');
+                ascendingOption.value = 'a-z';
+                ascendingOption.innerText = 'Sort A-Z';
+                selectBar.appendChild(ascendingOption);
+                let descendingOption = document.createElement('option');
+                descendingOption.value = 'z-a';
+                descendingOption.innerText = 'Sort Z-A';
+                selectBar.appendChild(descendingOption);
+                // Creating the category select wrapper and adding its classes and id
+                let sortingWrapper = document.createElement('div');
+                sortingWrapper.id = "portfolio-section-filters-sorting-wrapper";
+                sortingWrapper.classList.add('form-item', 'field', 'select');
+                // Adding the category select inner to the category select wrapper
+                sortingWrapper.appendChild(selectBar);
+                // Creating the dropdown icon and adding it to the category select wrapper
+                let dropdownIcon = document.createElement('div');
+                dropdownIcon.classList.add('select-dropdown-icon');
+                dropdownIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.439453 1.49825L1.56057 0.501709L9.00001 8.87108L16.4395 0.501709L17.5606 1.49825L9.00001 11.1289L0.439453 1.49825Z"></path></svg>';
+                sortingWrapper.appendChild(dropdownIcon);
+                // Creating the form styling div and adding its classes and inner elements
+                let formStylings = document.createElement('span');
+                formStylings.classList.add('form-input-effects');
+                formStylings.innerHTML = '<span class="form-input-effects-border"></span>';
+                // Adding the form styling to the category select wrapper
+                sortingWrapper.appendChild(formStylings);
+                // Adding the category select wrapper to the filter wrapper
+                filterWrapper.appendChild(sortingWrapper);
+            }
 
             // Adding the inset class if required
             portfolioSection.querySelector('.content').insertBefore(filterWrapper, portfolioSection.querySelector('.content').firstChild);
@@ -128,6 +166,10 @@ function initialisePortfolioFilters() {
                 let category = href.split('/')[0];
                 category = category.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
                 item.setAttribute('data-category', category);
+                let categoryText = document.createElement('p');
+                categoryText.classList.add('portfolio-category');
+                categoryText.innerText = category;
+                item.querySelector('.portfolio-text').insertBefore(categoryText, item.querySelector('.portfolio-text').firstChild);
                 categories.add(category);
             }
         }
