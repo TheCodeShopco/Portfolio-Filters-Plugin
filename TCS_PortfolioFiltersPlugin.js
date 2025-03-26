@@ -203,7 +203,7 @@ function initialisePortfolioFilters() {
         let categoryQuery = selectBar ? selectBar.value : 'all';
         let sortOption = sortingBar ? sortingBar.value : 'none';
 
-        let portfolioItems = portfolioSection.querySelectorAll('.grid-item');
+        let portfolioItems = Array.from(portfolioSection.querySelectorAll('.grid-item'));
 
         // Iterating over the list items and hiding them if they dont match the search criteria
         const sortItems = () => {
